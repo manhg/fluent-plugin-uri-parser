@@ -23,7 +23,8 @@ class Fluent::QueryStringParserFilter < Fluent::Filter
       end
 
       begin
-        values = Hash[URI.decode_www_form(raw_value)]
+        query_string = URI.parse(raw_value).query
+        values = Hash[URI.decode_www_form(query_string)]
 
         unless values.empty?
           if @inject_key_prefix
