@@ -22,7 +22,6 @@ unless ENV.has_key?('VERBOSE')
   $log = nulllogger
 end
 
-require 'fluent/plugin/filter_uri_parser'
 require 'fluent/plugin/filter_query_string_parser'
 
 class Test::Unit::TestCase

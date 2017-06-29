@@ -22,10 +22,6 @@ Or install it yourself as:
 
 ## Component
 
-### URIParserFilter
-
-This is a Fluentd plugin to parse and filtering uri in log messages and re-emit them.
-
 ### QueryStringParserFilter
 
 This is a Fluentd plugin to parse and filtering query string in log messages and re-emit them.
@@ -33,34 +29,15 @@ This is a Fluentd plugin to parse and filtering query string in log messages and
 ## Configuration
 
 ```
-<filter>
-  @type uri_parser
-  key_name uri
-  inject_key_prefix parsed
-  # hash_value_field parsed
-  # suppress_parse_error_log false
-  # ignore_key_not_exist false
-  # ignore_nil false
-
-  out_key_scheme scheme
-  out_key_host host
-  out_key_port port
-  out_key_path path
-  out_key_query query
-  out_key_fragment fragment
-</match>
-# input string of data: {"uri": "http://example.com/path?foo=bar#t=1"}
-# output data: {"parsed.scheme":"http","parsed.host":"example.com","parsed.port":80,"parsed.path":"/path","parsed.query":"foo=bar","parsed.ragment":"t=1"}
-
-<filter>
+<filter some.**>
   @type query_string_parser
-  key_name parsed.query
+  key_name path
   hash_value_field query
   # inject_key_prefix query
   # suppress_parse_error_log false
   # ignore_key_not_exist false
-</match>
-# input string of data: {"parsed.query": "foo=bar"}
+</filter>
+# input string of data: {"parsed.query": "/path/to/query?foo=bar"}
 # output data: {"query":{"foo":"bar"}}
 
 ```

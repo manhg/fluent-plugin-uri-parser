@@ -5,7 +5,7 @@ class Fluent::QueryStringParserFilter < Fluent::Filter
   config_param :hash_value_field, :string, default: nil
   config_param :inject_key_prefix, :string, default: nil
   config_param :suppress_parse_error_log, :bool, default: false
-  config_param :ignore_key_not_exist, :bool, default: false
+  config_param :ignore_key_not_exist, :bool, default: true
 
   def initialize
     super
